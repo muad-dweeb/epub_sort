@@ -1,5 +1,5 @@
-import os
 import argparse
+import os
 
 
 def rename_files(directory_to_crawl, change_from, change_to):
@@ -27,28 +27,28 @@ def delete_files(directory_to_crawl, filename_to_delete):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Rename all occurrences of FILE_NAME to NEW_NAME'
+            description='Rename all occurrences of FILE_NAME to NEW_NAME'
     )
     parser.add_argument(
-        'directory',
-        type=str,
-        help='The directory from which to crawl'
+            'directory',
+            type=str,
+            help='The directory from which to crawl'
     )
     parser.add_argument(
-        'target_file_name',
-        type=str,
-        help='The name of the file(s) on which you wish to operate'
+            'target_file_name',
+            type=str,
+            help='The name of the file(s) on which you wish to operate'
     )
     parser.add_argument(
-        '-r', '--rename',
-        type=str,
-        help='The name you wish to give your files'
+            '-r', '--rename',
+            type=str,
+            help='The name you wish to give your files'
     )
     parser.add_argument(
-        '-d', '--delete',
-        action='store_true',
-        default=False,
-        help='Delete all occurrences of target_file_name in directory tree'
+            '-d', '--delete',
+            action='store_true',
+            default=False,
+            help='Delete all occurrences of target_file_name in directory tree'
     )
     args = parser.parse_args()
 
