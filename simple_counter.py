@@ -41,18 +41,22 @@ class _GetchWindows:
         return msvcrt.getch()
 
 
-getch = _Getch()
+def main():
+    getch = _Getch()
 
-c = 0
-while True:
-    ch = getch()
-    if ch == '\x03':
-        print()
-        break
-    c += 1
-    print("\r", c, end='')
+    c = 0
+    while True:
+        ch = getch()
+        if ch == '\x03':
+            print()
+            break
+        c += 1
+        print("\r", c, end='')
 
 
+if __name__ == '__main__':
+    main()
+    
 # class Clicker(object):
 #     def __init__(self):
 #         self.count = 0
