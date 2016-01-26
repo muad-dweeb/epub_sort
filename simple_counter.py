@@ -2,7 +2,40 @@
 # -*- coding: utf-8 -*-
 
 
-# http://stackoverflow.com/a/510364/6364
+"""
+Original attempt
+    Saving in case I can figure it out later
+"""
+
+# class Clicker(object):
+#     def __init__(self):
+#         self.count = 0
+#
+#     def click(self):
+#         self.count += 1
+#         if self.count > 0:
+#             print(self.count, end='\r', )
+#
+#
+# def main():
+#     clicky = Clicker()
+#     while True:
+#         clack = input()
+#         if not clack:
+#             clicky.click()
+#         else:
+#             exit()
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+
+"""
+The working code below was pulled from a StackOverflow answer
+    http://stackoverflow.com/a/510364/6364
+"""
+
 class _Getch:
     """Gets a single character from standard input.  Does not echo to the screen."""
 
@@ -56,26 +89,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-# class Clicker(object):
-#     def __init__(self):
-#         self.count = 0
-#
-#     def click(self):
-#         self.count += 1
-#         if self.count > 0:
-#             print(self.count, end='\r', )
-#
-#
-# def main():
-#     clicky = Clicker()
-#     while True:
-#         clack = input()
-#         if not clack:
-#             clicky.click()
-#         else:
-#             exit()
-#
-#
-# if __name__ == '__main__':
-#     main()
