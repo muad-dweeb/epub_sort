@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 
 
 def rename_files(directory_to_crawl, change_from, change_to):
@@ -23,6 +24,23 @@ def delete_files(directory_to_crawl, filename_to_delete):
                 print('{} deleted'.format(target))
                 count += 1
     print('{} files deleted'.format(count))
+
+
+def aggregate_files(directory_to_crawl, filename_to_aggregate, destination):
+    count = 0
+    if not os.path.isdir(destination):
+        os.mkdir(destination)
+        print('{} created'.format(destination.upper()))
+    for root, dirs, files in os.walk(directory_to_crawl):
+        for f in files:
+            if f == filename_to_aggregate:
+                f_path = os.path.join(root, f)
+                f_parent = os.path.split(os.path.split(f_path)[0])[1]
+                f_destination = os.path.join(destination, f_parent)
+                shutil.copy2(f_path, f_destination)
+                print('{} copied to {}'.format(os.path.join(f_parent, f), f_destination))
+                count += 1
+    print('{} files aggregated'.format(count))
 
 
 def main():
@@ -50,10 +68,19 @@ def main():
             default=False,
             help='Delete all occurrences of target_file_name in directory tree'
     )
+    parser.add_argument(
+        '-a', '--aggregate',
+        type=str,
+        help='Aggregate all occurrences of target_file_name in directory tree to SPECIFIED_DESTINATION'
+    )
     args = parser.parse_args()
 
-    if args.rename and args.delete:
-        print('You make no sense')
+    #  probably a better way to handle the following check
+    if (args.rename and args.delete and args.aggregate) or \
+            (args.rename and args.delete) or \
+            (args.rename and args.aggregate) or \
+            (args.delete and args.aggregate):
+        print('Too many options!')
         exit()
     elif args.rename:
         rename_files(args.directory,
@@ -62,6 +89,10 @@ def main():
     elif args.delete:
         delete_files(args.directory,
                      args.target_file_name)
+    elif args.aggregate:
+        aggregate_files(args.directory,
+                        args.target_file_name,
+                        args.aggregate)
 
 
 if __name__ == '__main__':
