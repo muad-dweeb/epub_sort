@@ -9,9 +9,9 @@ def rename_files(directory_to_crawl, change_from, change_to):
         for f in files:
             if f == change_from:
                 os.rename(os.path.join(root, change_from), os.path.join(root, change_to))
-                print('{} renamed to {}'.format(change_from, change_to))
+                # print('{} renamed to {}'.format(change_from, change_to))
                 count += 1
-    print('{} files modified'.format(count))
+    print('{} files renamed\n{} >> {}'.format(count, change_from, change_to))
 
 
 def delete_files(directory_to_crawl, filename_to_delete):
@@ -41,6 +41,10 @@ def aggregate_files(directory_to_crawl, filename_to_aggregate, destination):
                 print('{} copied to {}'.format(os.path.join(f_parent, f), f_destination))
                 count += 1
     print('{} files aggregated'.format(count))
+
+
+def redistribute_aggregated_files(aggregation_directory, filename_to_redistribute, destination):
+    pass
 
 
 def main():
