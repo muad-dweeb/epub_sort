@@ -23,7 +23,8 @@ sublime-text-installer \
 gimp \
 darktable \
 htop \
-unity-tweak-tool"
+unity-tweak-tool \
+insync"
 sudo apt-get install -y $APPS
 
 echo "Installing Themes"
@@ -62,3 +63,5 @@ rm pycharm-*.tar.gz
 cd pycharm-*
 cd bin
 ./pycharm.sh
+
+echo "Remeber to configure insync!"
