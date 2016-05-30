@@ -64,4 +64,4 @@ cd pycharm-*
 cd bin
 ./pycharm.sh
 
-echo "Remeber to configure insync!"
+echo "Remember to configure insync!"
