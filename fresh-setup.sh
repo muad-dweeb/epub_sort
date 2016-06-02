@@ -17,6 +17,7 @@ sudo apt-get update
 
 echo "Installing Applications"
 APPS="git \
+vim \
 indicator-sound-switcher \
 skype \
 sublime-text-installer \
