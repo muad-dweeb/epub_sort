@@ -58,3 +58,6 @@ target/
 
 # My preferences
 .idea/
+
+# Sensitive information
+data/gmail_pass.txt
