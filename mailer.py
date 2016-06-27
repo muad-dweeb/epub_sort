@@ -9,18 +9,12 @@ from httplib2 import Http
 from os import path, makedirs
 from email.mime.text import MIMEText
 from base64 import b64encode
+import argparse
 
 # GOOGLE
 from apiclient import discovery, errors
 from oauth2client import file as oauth2_file
-from oauth2client import client, tools
 
-# try:
-#     import argparse
-#     flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-# except ImportError:
-#     flags = None
-import argparse
 
 # If modifying these scopes, delete your previously saved credentials at ~/.credentials/gmail-python-quickstart.json
 SCOPES = 'https://mail.google.com'
@@ -44,14 +38,6 @@ def get_credentials():
     credential_path = path.join(credential_dir, 'gmail-python-quickstart.json')
     store = oauth2_file.Storage(credential_path)
     credentials = store.get()
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        if flags:
-            credentials = tools.run_flow(flow, store, flags)
-        else:  # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
 
     return credentials
 
@@ -115,8 +101,8 @@ def main():
     Sender account authorization managed through Google API dashboard
     """
     parser = argparse.ArgumentParser(description='Send an email')
-    parser.add_argument('-r', '--recipient', type=str, help='destination email address')
-    parser.add_argument('-c', '--contents', type=str, help='message body contents')
+    parser.add_argument('recipient', type=str, help='destination email address')
+    parser.add_argument('contents', type=str, help='message body contents')
     args = parser.parse_args()
     recipient = args.recipient
     contents = args.contents
