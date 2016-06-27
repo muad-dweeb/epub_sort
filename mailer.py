@@ -104,16 +104,18 @@ def main():
     """
     parser = argparse.ArgumentParser(description='Send an email')
     parser.add_argument('recipient', type=str, help='destination email address')
+    parser.add_argument('subject', type=str, help='subject header for the message')
     parser.add_argument('contents', type=str, help='message body contents')
     args = parser.parse_args()
     recipient = args.recipient
+    subject = args.subject
     contents = args.contents
 
     credentials = get_credentials()
     http = credentials.authorize(Http())
     service = discovery.build('gmail', 'v1', http=http)
 
-    message = create_message('me', recipient, 'gmail-api test', contents)
+    message = create_message('me', recipient, subject, contents)
     send_message(service, 'me', message)
 
 
