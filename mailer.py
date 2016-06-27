@@ -81,6 +81,8 @@ def send_message(service, user_id, message):
         print ('An error occurred: %s' % error)
 
 
+# Currently uncalled.
+# This function is a remnant from the main function in Google's provided 'quickstart' example.
 def list_labels(service, user_id):
     """List account Labels"""
 
