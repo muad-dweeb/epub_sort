@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+
+
+from __future__ import print_function, unicode_literals
+
+
+class UtilityException(Exception):
+    """Application base error"""
+    pass
