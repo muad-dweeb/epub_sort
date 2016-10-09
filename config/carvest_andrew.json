@@ -1,0 +1,57 @@
+{
+  "price": {
+    "min": 2000,
+    "max": 10000
+  },
+  "years": {
+    "min": 1999,
+    "max": 2016
+  },
+  "makes": [
+    "Acura",
+    "Audi",
+    "BMW",
+    "Chev",
+    "Fiat",
+    "Ford",
+    "Honda",
+    "Hyund",
+    "Infin",
+    "Jeep",
+    "Kia",
+    "Rov",
+    "Lexus",
+    "Mazda",
+    "MB",
+    "Mini",
+    "Mit",
+    "Nissan",
+    "Pont",
+    "Scion",
+    "Smart",
+    "Sub",
+    "Suzuki",
+    "Tesla",
+    "Toyota",
+    "Volks",
+    "Volvo"
+  ],
+  "search_radius": 200,
+  "search_center": "Tacoma WA 98404",
+  "styles": [
+    "AWD4WD",
+    "Convert",
+    "Coupe",
+    "Hatch",
+    "Hybel",
+    "Luxury",
+    "Sedan",
+    "Wagon"
+  ],
+  "mpg": [
+    "40-",
+    "31-40",
+    "21-30"
+  ],
+  "max_mileage": 100000
+}
