@@ -24,5 +24,10 @@ I would like to expand on this more.
 
 ## quickstart
 **Python example for Gmail API provided by Google**
+
 * This script handles the initial authentication setup for supplied email
 
+## brute force
+**Rudimentary password cracker**
+
+* Don't use this, it's garbage
