@@ -52,20 +52,24 @@ def permute(length):
 
 def parse_args():
     parser = ArgumentParser(description='Password Get')
-    parser.add_argument('--absolute_length', '-al', type=int,
+    parser.add_argument('--absolute_length', '-al', type=int, optional=True,
                         help='Known character length of the target password')
+    parser.add_argument('--encfs', type=tuple, default=False,
+                        help='A tuple of paths (strings) in the form: (encrypted_dir, visible_dir)')
     args = parser.parse_args()
     return args
 
 
 def main():
     args = parse_args()
-
     char_length = args.absolute_length
-    encrypted = path.expanduser('~/.crypt_sec')
-    visible = path.expanduser('~/visible_sec')
+
     recover_my_damn_password = Crack()
-    recover_my_damn_password.brute_force_encfs(char_length, encrypted, visible)
+
+    if args.encfs:
+        encrypted_dir = path.expanduser(args.encfs[0])
+        visible_dir = path.expanduser(args.encfs[1])
+        recover_my_damn_password.brute_force_encfs(char_length, encrypted_dir, visible_dir)
 
 
 if __name__ == '__main__':
