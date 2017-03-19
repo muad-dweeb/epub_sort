@@ -16,16 +16,14 @@ current_image=$(gsettings get org.gnome.desktop.background picture-uri)
 rotate_images=$(ls $rotate_dir)
 image_array=($rotate_images)
 
-# Go to the specified directory
-pushd $rotate_dir
-
 # Get the next index in the array
 count=0
 for i in "${image_array[@]}"
 do
 	let "count+=1"
 	if [[ $current_image == \'file://$1$i\' ]]; then
-		let "next=$count"
+		# let "next=$count"
+		next=$count
 	fi
 done
 
@@ -34,12 +32,5 @@ if [[ $next -ge $count ]]; then
 	next=0
 fi
 
+# Do the thing
 $(gsettings set org.gnome.desktop.background picture-uri "file://$1${image_array[$next]}")
-
-
-
-#for i in "${rotate_images[@]}"
-#do 
-#    fullpath=$1$i
-#    echo $fullpath
-#done
