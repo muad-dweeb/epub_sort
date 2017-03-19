@@ -11,6 +11,7 @@ rotate_dir=$1
 
 # Get the currently set wallpaper
 current_image=$(gsettings get org.gnome.desktop.background picture-uri)
+echo "Current Image: $current_image"
 
 # Assign the images in the rotation directory to an array
 rotate_images=$(ls $rotate_dir)
@@ -32,5 +33,17 @@ if [[ $next -ge $count ]]; then
 	next=0
 fi
 
+# Get the next wallpaper to set
+next_image="file://$1${image_array[$next]}"
+
+# export DBUS_SESSION_BUS_ADDRESS environment variable
+# http://stackoverflow.com/a/19666729/3900915
+PID=$(pgrep gnome-session)
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
+
 # Do the thing
-$(gsettings set org.gnome.desktop.background picture-uri "file://$1${image_array[$next]}")
+echo "Next Image: $next_image"
+
+command="gsettings set org.gnome.desktop.background picture-uri $next_image"
+echo $command
+$command
