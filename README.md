@@ -9,6 +9,7 @@
     ` ./rotate_wallpaper.sh ~/Pictures/wallpaper_directory`
 - Iterates through a directory sequentially.
 - Fast and easy to use.
+- *Tested and running on Ubuntu 14.04.*
 
 ## recursive file management
 **Rename or delete files nested in a directory tree.**
