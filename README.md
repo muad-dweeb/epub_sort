@@ -1,6 +1,15 @@
 # Utilities
 ### Helping myself handle my junk.
 
+## rotate wallpaper ##
+- Rotates desktop wallpaper given a directory of images.
+- Pure bash.
+- Recommended to set up in a crontab.
+- Called like so:
+    ` ./rotate_wallpaper.sh ~/Pictures/wallpaper_directory`
+- Iterates through a directory sequentially.
+- Fast and easy to use.
+
 ## recursive file management
 **Rename or delete files nested in a directory tree.**
 
