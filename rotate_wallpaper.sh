@@ -44,6 +44,12 @@ export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/en
 # Do the thing
 echo "Next Image: $next_image"
 
-command="gsettings set org.gnome.desktop.background picture-uri $next_image"
-echo $command
-$command
+command1="gsettings set org.gnome.desktop.background picture-uri $next_image"
+echo $command1
+$command1
+
+# Change the login screen background to match
+# Note: Does not live update while locked.
+command2="gsettings set com.canonical.unity-greeter background $next_image"
+echo $command2
+$command2
