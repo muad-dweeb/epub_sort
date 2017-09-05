@@ -2,12 +2,26 @@ import subprocess
 from argparse import ArgumentParser
 from os import path, listdir, rename
 
-"""
-IMAGES
-Extract EXIF data from image files
-Use the extracted data to assemble unique strings
-Rename the files with these strings
-"""
+
+def get_exif(filename):
+	# https://stackoverflow.com/a/765403/3900915
+    decoded_tags = {}
+    i = Image.open(filename)
+    info = i._getexif()
+    for tag, value in info.items():
+        decoded = TAGS.get(tag, tag)
+        decoded_tags[decoded] = value
+    return decoded_tags
+
+
+def rename_images_in_dir(dir, extension):
+	"""
+	IMAGES
+	Extract EXIF data from image files
+	Use the extracted data to assemble unique strings
+	Rename the files with these strings
+	"""
+
 
 
 def rename_videos_in_dir(dir, extension):
