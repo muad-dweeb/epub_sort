@@ -2,6 +2,10 @@ import argparse
 import os
 import shutil
 
+# TODO: Add docstrings
+# TODO: Support suffix addition
+# TODO: Support extension addition
+
 
 def rename_files(directory_to_crawl, change_from, change_to):
     count = 0
