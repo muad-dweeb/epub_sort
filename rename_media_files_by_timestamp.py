@@ -4,7 +4,7 @@ from os import path, listdir, rename
 
 
 def get_exif(filename):
-	# https://stackoverflow.com/a/765403/3900915
+    # https://stackoverflow.com/a/765403/3900915
     decoded_tags = {}
     i = Image.open(filename)
     info = i._getexif()
@@ -15,12 +15,12 @@ def get_exif(filename):
 
 
 def rename_images_in_dir(dir, extension):
-	"""
-	IMAGES
-	Extract EXIF data from image files
-	Use the extracted data to assemble unique strings
-	Rename the files with these strings
-	"""
+    """
+    IMAGES
+    Extract EXIF data from image files
+    Use the extracted data to assemble unique strings
+    Rename the files with these strings
+    """
 
 
 
