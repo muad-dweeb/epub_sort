@@ -1,6 +1,7 @@
 import subprocess
 from argparse import ArgumentParser
 from os import path, listdir, rename
+from PIL import Image, ExifTags
 
 
 def get_exif(filename):
@@ -9,7 +10,7 @@ def get_exif(filename):
     i = Image.open(filename)
     info = i._getexif()
     for tag, value in info.items():
-        decoded = TAGS.get(tag, tag)
+        decoded = ExifTags.TAGS.get(tag, tag)
         decoded_tags[decoded] = value
     return decoded_tags
 
