@@ -22,6 +22,12 @@ def rename_images_in_dir(dir, extension):
     Use the extracted data to assemble unique strings
     Rename the files with these strings
     """
+    dir_path = path.expanduser(dir)
+    for filename in listdir(dir_path):
+        if filename.endswith(extension):
+            file_path = path.join(dir_path, filename)
+            exif_tags = get_exif(file_path)
+            print(exif_tags)
 
 
 
