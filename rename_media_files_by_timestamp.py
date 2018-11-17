@@ -1,8 +1,7 @@
 import subprocess
 from argparse import ArgumentParser
 from os import path, listdir, rename
-from PIL import Image
-from PIL.ExifTags import TAGS
+from PIL import Image, ExifTags
 
 
 def get_exif(filename):
@@ -11,7 +10,7 @@ def get_exif(filename):
     i = Image.open(filename)
     info = i._getexif()
     for tag, value in info.items():
-        decoded = TAGS.get(tag, tag)
+        decoded = ExifTags.TAGS.get(tag, tag)
         decoded_tags[decoded] = value
     return decoded_tags
 
@@ -23,6 +22,12 @@ def rename_images_in_dir(dir, extension):
     Use the extracted data to assemble unique strings
     Rename the files with these strings
     """
+    dir_path = path.expanduser(dir)
+    for filename in listdir(dir_path):
+        if filename.endswith(extension):
+            file_path = path.join(dir_path, filename)
+            exif_tags = get_exif(file_path)
+            print(exif_tags)
 
 
 def rename_videos_in_dir(dir, extension):
@@ -53,6 +58,24 @@ def rename_videos_in_dir(dir, extension):
             rename(video, new_file_path)
 
 
+def get_media_type(extension):
+    # TODO: make this less stupid
+    image_extensions = ['jpg', 'jpeg', 'png', 'gif']
+    video_extensions = ['mpg', 'mpeg', 'avi', 'mkv', 'mp4']
+    audio_extensions = ['mp3']
+
+    ext = extension.lower().strip('.')
+    if ext in image_extensions:
+        return 'image'
+    elif ext in video_extensions:
+        return 'video'
+    elif ext in audio_extensions:
+        return 'audio'
+    else:
+        raise Exception('Extension {} is not currently supported'.format(ext))
+
+
+
 def main():
     parser = ArgumentParser(
         description='Rename all media files according to timestamps extracted from metadata'
@@ -72,7 +95,17 @@ def main():
     # TODO: Add a TEST Flag that prints out the operations without doing them
     args = parser.parse_args()
 
-    rename_videos_in_dir(args.directory, args.extension)
+    ext = get_media_type(args.extension)
+    try:
+        if ext == 'image':
+            rename_images_in_dir(args.directory, args.extension)
+        elif ext == 'video':
+            rename_videos_in_dir(args.directory, args.extension)
+        else:
+            raise Exception('Audio not supported yet')
+    except Exception as e:
+        print(e)
+
 
 
 if __name__ == '__main__':
