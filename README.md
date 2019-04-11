@@ -26,9 +26,6 @@ I would like to expand on this more.
 * Execute with `./filename.sh`
 * **Warning**: Currently untested. Use at your own risk.
 
-## enum
-**An emulator for Java-esque enum support in Python. Not my code.**
-
 ## mailer
 **Sends an email utilizing the Gmail API**
 
